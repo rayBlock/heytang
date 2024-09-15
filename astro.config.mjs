@@ -15,12 +15,15 @@ import vercel from "@astrojs/vercel/serverless";
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  adapter: vercel(),
-  site: config.site.base_url,
+  // adapter: aws,
+  // site: config.site.base_url,
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   image: {
-    service: squooshImageService()
+    entrypoint: 'astro/assets/services/sharp',
+    config: {
+      limitInputPixels: false,
+   },
   },
   integrations: [react(), sitemap(), tailwind({
     config: {
@@ -45,7 +48,10 @@ export default defineConfig({
       test: "Table of contents"
     }]],
     shikiConfig: {
-      theme: "one-dark-pro",
+      theme: {
+        light: 'dracula',
+        dark: 'github-dark',
+      },
       wrap: true
     },
     extendDefaultPlugins: true

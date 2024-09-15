@@ -10,49 +10,15 @@ import { UI } from "@/utils/config";
 
   window.basic_script = true;
 
-  // change giscus theme
-  // https://thezal.dev/article_giscus_astro/
-  function setGiscusTheme(theme) {
-    console.log("setGiscusTheme", theme);
-    const iframe = document.querySelector("iframe.giscus-frame");
-    if (!iframe) {
-      const giscusScript = document.getElementById("giscus-script");
-      if (giscusScript) {
-        console.log("setGiscusTheme, iframe not found but script found");
-        giscusScript.setAttribute("data-theme", theme);
-      }
-      return;
-    }
-    console.log("setGiscusTheme, giscus iframe found");
-    iframe.contentWindow.postMessage(
-      { giscus: { setConfig: { theme } } },
-      "https://giscus.app",
-    );
-  }
-
-  // change toaster theme
-  function setToasterTheme(theme) {
-    console.log("setToasterTheme", theme);
-    const toaster = document.getElementById("toaster");
-    if (toaster) {
-      console.log("setToasterTheme, toaster found");
-      toaster.setAttribute("theme", theme);
-    } else {
-      console.log("setToasterTheme, toaster not found");
-    }
-  }
-
   // dark mode theme
   function applyTheme(theme) {
     console.log("applyTheme", theme);
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
-      setGiscusTheme("dark");
-      setToasterTheme("dark");
+   
     } else {
       document.documentElement.classList.remove("dark");
-      setGiscusTheme("light");
-      setToasterTheme("light");
+    
     }
   }
 
@@ -100,8 +66,6 @@ import { UI } from "@/utils/config";
         ? "dark"
         : "light";
 
-      setGiscusTheme(localStorage.theme);
-      setToasterTheme(localStorage.theme);
     });
 
     // header nav menu events

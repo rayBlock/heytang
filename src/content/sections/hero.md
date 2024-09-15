@@ -8,11 +8,11 @@ image: "@/assets/hero.png"
 
 primaryButton:
   enable: true
-  label: "🔥 每日一诗"
+  label: "🔥 每日一诗 r"
   link: "/today"
 
 secondaryButton:
   enable: true
-  label: "📚 精选诗集"
+  label: "📚 精选诗集 s"
   link: "/collections"
 ---
